@@ -1,0 +1,24 @@
+name: Add bugs to project
+
+on:
+  issues:
+    types:
+      - labeled
+
+jobs:
+  add-to-project:
+    name: Add issue to projects
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/add-to-project@v1.0.2
+        with:
+          # deployment things need flagging to infrastructure project
+          project-url: https://github.com/orgs/probit-io/projects/5
+          github-token: ${{ secrets.PROBIT_ROBOT_TOKEN }}
+          labeled: deployment
+      - uses: actions/add-to-project@v1.0.2
+        with:
+          # AIM 5 bits go on the AIM5 board
+          project-url: https://github.com/orgs/probit-io/projects/18
+          github-token: ${{ secrets.PROBIT_ROBOT_TOKEN }}
+          labeled: aim5 
